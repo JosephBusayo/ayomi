@@ -17,7 +17,8 @@ const data = [
     },
     {
         "id" : 4,
-        "img" : "clip1",
+        "midText" : "At the beach",
+        "img" : "clip1.jpg",
         "btnText" : "Next"
     },
 ]
