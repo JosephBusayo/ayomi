@@ -1,14 +1,13 @@
 import React from "react";
-import info from "./data"
+import data from "./data"
 
 //{props.setup && <h3>{props.setup}</h3>} 
 
 export default function Page(){
     const [currentPage, setCurrentPage] = React.useState(0)
-    const mdata = info.map(d =>{
-        return d
+    const pageData = data.map(page =>{
+        return page
     })
-    const headerText = <h1 className="header-text">Ayomi</h1>
 
     function changePage(){
         setCurrentPage(prevPage => prevPage + 1)
@@ -16,15 +15,37 @@ export default function Page(){
 
     return(
         <section className="screen">
-            {headerText}
+            <div className="screen-text-wrapper">
+                <h1 className="header-text">Ayomi</h1>
 
-            <p className="mid-text">
-                {mdata[currentPage]["id"]}
-            </p>
+                {
+                    pageData[currentPage]["img"]  &&
+                    <img 
+                    src={`../img/${pageData[currentPage]["img"]}`}
+                    className = "img"
+                    alt = "fun"
+                    />
+                }
 
-            <button className="btn" onClick={changePage}>
-                {mdata[currentPage]["btnText"]}
-            </button>
+                <p className="mid-text">
+                    {pageData[currentPage]["midText"]}
+                </p>
+                {
+                    pageData[currentPage]["placeholder"]  &&
+                    <input placeholder={pageData[currentPage]["placeholder"]} />
+                }
+            </div>
+            
+            {
+                currentPage == pageData.length - 1 ?
+                <button className="btn">
+                    {pageData[currentPage]["btnText"]}
+                </button> :
+                <button className="btn" onClick={changePage}>
+                    {pageData[currentPage]["btnText"]}
+                </button>
+            }
+
         </section>
     )
 }
